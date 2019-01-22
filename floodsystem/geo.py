@@ -8,7 +8,6 @@ geographical data.
 
 from floodsystem.utils import sorted_by_key  # noqa
 from floodsystem.stationdata import build_station_list
-
 def rivers_with_stations (stations):
     "given a list of station objects, returns a set with the names of the rivers with a monitoring station"
     rivers_set = set()
@@ -28,3 +27,31 @@ def stations_by_river(stations):
             river_station_dict[station.river].append(station.name)
     return river_station_dict
 
+from floodsystem.station import MonitoringStation
+
+def stations_by_distance(stations, p):
+    stations_and_distances = []
+    
+    
+    distances = []
+    
+    
+    for station in stations:
+        distance = haversine(station.coord, p)
+        
+        
+        stations_and_distances.append((station, distance))
+        
+    
+            
+            
+    
+    final = sorted_by_key(stations_and_distances, 1, reverse=False)
+    print(stations_and_distances[:10])
+    return final
+
+
+    
+
+
+    
