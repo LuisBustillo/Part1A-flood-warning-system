@@ -9,6 +9,7 @@ geographical data.
 from floodsystem.utils import sorted_by_key  # noqa
 from floodsystem.stationdata import build_station_list
 from floodsystem.station import MonitoringStation
+from haversine import haversine
 
 def rivers_with_stations (stations):
     "given a list of station objects, returns a set with the names of the rivers with a monitoring station"
@@ -51,6 +52,7 @@ def rivers_by_station_number(stations , N):
 
 
 def stations_by_distance(stations, p):
+    "function returns a list of tuples in format (station name, distance from p)"
     stations_and_distances = []
     distances = []
     for station in stations:
@@ -61,6 +63,7 @@ def stations_by_distance(stations, p):
     return final
 
 def stations_within_radius(stations, centre, r):
+    "function returning a list of all stations within a distance r of the centre"
     within_radius = []
     stations_and_distances = []
     for station in stations:
