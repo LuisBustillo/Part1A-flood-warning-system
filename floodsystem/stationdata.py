@@ -6,8 +6,9 @@ JSON objects fetched from the Internet and
 
 """
 
-from . import datafetcher
-from .station import MonitoringStation
+from floodsystem.datafetcher import fetch_station_data
+from floodsystem.station import MonitoringStation
+from floodsystem.datafetcher import fetch_latest_water_level_data
 
 
 def build_station_list(use_cache=True):
@@ -21,7 +22,7 @@ def build_station_list(use_cache=True):
     """
 
     # Fetch station data
-    data = datafetcher.fetch_station_data(use_cache)
+    data = fetch_station_data(use_cache)
 
     # Build list of MonitoringStation objects
     stations = []
@@ -67,7 +68,7 @@ def update_water_levels(stations):
     """Attach level data contained in measure_data to stations"""
 
     # Fetch level data
-    measure_data = datafetcher.fetch_latest_water_level_data()
+    measure_data = fetch_latest_water_level_data()
 
     # Build map from measure id to latest reading (value)
     measure_id_to_value = dict()
