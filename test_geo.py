@@ -8,7 +8,7 @@ from floodsystem.geo import stations_within_radius
 def test_rivers_with_stations ():
     stations = build_station_list()
     x = rivers_with_stations(stations)
-    assert type(x) == list
+    assert type(x) == set
     assert len(x) > 0
 
 def test_stations_by_river (): 
