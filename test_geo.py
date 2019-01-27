@@ -6,6 +6,7 @@ from floodsystem.geo import rivers_by_station_number
 from floodsystem.geo import stations_by_distance
 from floodsystem.station import inconsistent_typical_range_stations
 from random import randint
+from floodsystem.geo import stations_within_radius
 
 def test_rivers_with_stations ():
     stations = build_station_list()
@@ -27,11 +28,10 @@ def test_stations_by_distance():
     result = stations_by_distance(build_station_list(), (52.2053, 0.1218))
     result_1 = result[0]
     result_2 = result [-1]
-    assert len(stations_by_distance(build_station_list(), (52.2053, 0.1218)).stations_and_distances) > 0
-    assert len(stations_by_distance(build_station_list, (52.2053, 0.1218)).final) > 0
+    assert len(stations_by_distance(build_station_list(), (52.2053, 0.1218))) > 0
     assert result_1[1] == 0.840237595667494
     assert result_2[1] == 467.53431870130544
-    assert type(result) == tuple
+    assert type(result) == list
     assert type(result_1) == tuple
     assert type(result_2) == tuple
     assert type(result_1[1]) == float
@@ -46,7 +46,6 @@ def test_rivers_station_number ():
         assert type(item[0]) == str
         assert type(item[1]) == int
 
-
 def test_inconsistent_typical_range_stations ():
     stations = build_station_list()
     x = inconsistent_typical_range_stations(stations)
@@ -55,5 +54,10 @@ def test_inconsistent_typical_range_stations ():
     for item in x:
         assert type(item) == str
     
-    
-
+def test_stations_within_radius():
+    R = stations_within_radius(build_station_list(), (52.2053, 0.1218), 10)
+    assert R[0] == "Haslingfield Burnt Mill"
+    assert R[-1] == "Oakington"
+    assert type(R) == list
+    assert type(R[1]) == str                                                            
+                                            
