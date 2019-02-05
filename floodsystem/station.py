@@ -51,6 +51,8 @@ class MonitoringStation:
         elif self.typical_range[1] < self.typical_range[0]:
         #elif (self.typical_range).index(1) < (self.typical_range).index(0):
             return False
+
+        #return self.typical_range is not None and self.typical_range[1] > self.typical_range[0]
     
 
 def inconsistent_typical_range_stations(stations):
