@@ -4,6 +4,7 @@ from floodsystem.stationdata import build_station_list
 import operator
 
 def stations_level_over_threshold(stations, tol):
+    "Function returns a list of tuples of stations at which the current relative water level is greater than tol in the form (station name, relative water level)"    
     relatives = []
     for station in stations:
         if station.relative_water_level() != None and station.relative_water_level() >= tol:
