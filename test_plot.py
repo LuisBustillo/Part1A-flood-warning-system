@@ -20,5 +20,5 @@ def test_plot_water_level_with_fit():
     station = stations[0]
     dt = 2
     dates, levels = fetch_measure_levels(station.measure_id, dt = datetime.timedelta(days = dt))
-    N = randint(0, 5)
+    N = randint(1, 5)
     assert plot_water_level_with_fit(station, dates, levels, N) == "No Error"    
