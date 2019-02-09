@@ -16,7 +16,7 @@ def test_polyfit():
     station = stations[0]
     dt = 2
     dates, levels = fetch_measure_levels(station.measure_id, dt = datetime.timedelta(days = dt))
-    N = randint(0, 5)
+    N = randint(1, 5)
     
 
     
