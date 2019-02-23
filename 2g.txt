@@ -1,0 +1,5 @@
+""4 lists, "severe", "high", "moderate", "low" ""
+""Severe - Top 10 stations using function in 2C""
+""High - relative level > 1 in 1 day
+""Moderate - relative level > 0.8 in 1 day, rl >1 in 2 days""
+""Low - relative level > 0.8 in 5 days"  

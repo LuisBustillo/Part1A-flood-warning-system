@@ -29,7 +29,8 @@ for i in highest_stations:
             break                
     dt = 10
     dates0, levs0 = fetch_measure_levels(station_0.measure_id, dt = datetime.timedelta(days = dt))
-    plot_water_level_with_fit(station_0, dates0, levs0, 4)
+    plot_water_levels(station_0, dates0, levs0)
+    
     
 
 

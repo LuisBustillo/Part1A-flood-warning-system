@@ -9,4 +9,6 @@ def polyfit(dates, levels, p):
     #x1 = np.linspace(x[0], x[-1], 100)
     return poly, x[0]
 
+
+
    
