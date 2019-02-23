@@ -48,7 +48,7 @@ for station in station_list[10:]:
         relative = station.relative_water_level()
         
     
-        if relative >= 0.5 and pl > station.latest_level:
+        if relative >= 0.7 and pl > station.latest_level:
             high.append((station.name, relative)) 
 print("High:", high)  
 print("Failed stations:", failed_stations) 
