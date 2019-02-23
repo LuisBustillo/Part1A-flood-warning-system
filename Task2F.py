@@ -7,25 +7,19 @@ from floodsystem.plot import plot_water_levels
 from floodsystem.plot import plot_water_level_with_fit
 from floodsystem.analysis import polyfit
 import matplotlib.pyplot as plt
+from floodsystem.flood import stations_highest_rel_level
 
 stations = build_station_list()
 update_water_levels(stations)
-levels = []
-for station in stations:
-    if station.latest_level != None and station.typical_range != None:
-        relative = (station.latest_level - station.typical_range[0]) / station.typical_range[1] - station.typical_range[0]    
-        print(relative)
-        levels.append((relative, station.name, station.measure_id))
-sorted_levels = sorted_by_key(levels, 0)
-highest = sorted_levels[-5:]
-highest_stations = []
-for i in highest:
-    highest_stations.append(i[1])
+
+highest_stations = stations_highest_rel_level(stations, 5)
+
+
 
 
 
 for i in highest_stations:
-    station_name = i
+    station_name = i[0]
     station_0 = None
     for station in stations:
         if station.name == station_name:

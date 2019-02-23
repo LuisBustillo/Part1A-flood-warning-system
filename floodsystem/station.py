@@ -41,21 +41,17 @@ class MonitoringStation:
 
     def typical_range_consistent(self):
         " Method that checks the typical high/low range data for consistency"
-        if self.typical_range == None:
+        if not self.typical_range:
             return False
-        elif len(self.typical_range) <= 0 :
-            return False
-        elif self.typical_range[1] > self.typical_range[0]:
-        #if (self.typical_range).index(1) > (self.typical_range).index(0):
-            return True
-        elif self.typical_range[1] < self.typical_range[0]:
-        #elif (self.typical_range).index(1) < (self.typical_range).index(0):
-            return False
+        else:
+            low, high = self.typical_range
+            return low < high
 
         #return self.typical_range is not None and self.typical_range[1] > self.typical_range[0]
     
     def relative_water_level(self):
-        if self.latest_level != None and self.typical_range != None:
+        #print(self.name, self.latest_level, self.typical_range)
+        if self.latest_level != None and self.typical_range_consistent():
             return (self.latest_level - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0])    
         else:
             return None

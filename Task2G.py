@@ -14,28 +14,43 @@ import matplotlib
 stations = build_station_list()
 update_water_levels(stations)
 
-severe = stations_highest_rel_level(stations, 10)
-print(severe)
+threat_stations = stations_highest_rel_level(stations, 50)
+station_list = list()
+for i in range(0, len(threat_stations)):
+    name = threat_stations[i][0]
+    for station in stations:
+        if station.name == name:
+            station_list.append((station, threat_stations[i][1]))
+            break
+
+severe = station_list[:9]
+print("Severe:", [(station[0].name, station[0].relative_water_level()) for station in severe])
 high = []
 x = datetime.datetime.now()
-print(x)
-y = matplotlib.dates.date2num(x) + 1
-print(y)
 
-for station in stations:
-    if station.latest_level != None and station.typical_range != None:
+y = matplotlib.dates.date2num(x) + 1
+
+failed_stations = list()
+for station in station_list[10:]:
+    station = station[0]
+    if station.typical_range_consistent():
         dt = 2
         dates0, levs0 = fetch_measure_levels(station.measure_id, dt = datetime.timedelta(days = dt))
-    
-        pol, d0 = polyfit(dates0, levs0, 4)
+        try:
+            pol, d0 = polyfit(dates0, levs0, 4)
+        except IndexError:
+            failed_stations.append(station.name)
+            print("Skipping a station")
+            continue
      
         pl = pol(y - d0)
     
-        relative = (pl - station.typical_range[0]) / station.typical_range[1] - station.typical_range[0]
+        relative = station.relative_water_level()
         
     
-        if relative >= 1 and station not in severe:
+        if relative >= 0.5 and pl > station.latest_level:
             high.append((station.name, relative)) 
-print(high)   
+print("High:", high)  
+print("Failed stations:", failed_stations) 
 
     
