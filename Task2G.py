@@ -15,7 +15,7 @@ stations = build_station_list()
 update_water_levels(stations)
 
 threat_stations = stations_highest_rel_level(stations, 50)
-station_list = list()
+station_list = []
 for i in range(0, len(threat_stations)):
     name = threat_stations[i][0]
     for station in stations:
@@ -30,7 +30,7 @@ x = datetime.datetime.now()
 
 y = matplotlib.dates.date2num(x) + 1
 
-failed_stations = list()
+failed_stations = []
 for station in station_list[10:]:
     station = station[0]
     if station.typical_range_consistent():
