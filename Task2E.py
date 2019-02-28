@@ -12,7 +12,7 @@ stations = build_station_list(use_cache=False)
 update_water_levels(stations)
 
 highest_stations = stations_highest_rel_level(stations, 5)
-print(highest_stations) 
+ 
 '''
 for i in highest:
     highest_stations.append(i[1])

@@ -1,3 +1,4 @@
+
 from floodsystem.stationdata import build_station_list
 from floodsystem.stationdata import update_water_levels
 from floodsystem.utils import sorted_by_key
@@ -25,7 +26,6 @@ def rising_gradient(pol, d0, x):
         return True
     else :
         return False
-
 stations = build_station_list()
 update_water_levels(stations)
 stations_in_radius = stations_within_radius(stations, location, radius)
