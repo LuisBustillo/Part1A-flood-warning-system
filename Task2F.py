@@ -14,10 +14,6 @@ update_water_levels(stations)
 
 highest_stations = stations_highest_rel_level(stations, 5)
 
-
-
-
-
 for i in highest_stations:
     station_name = i[0]
     station_0 = None
@@ -29,5 +25,3 @@ for i in highest_stations:
     dates0, levs0 = fetch_measure_levels(station_0.measure_id, dt = datetime.timedelta(days = dt))
     plot_water_level_with_fit(station_0, dates0, levs0, 4)
     
-    
- 
